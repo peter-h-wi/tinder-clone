@@ -1,3 +1,9 @@
+## Introduction
+This app is creating an tinder-clone app using React.
+I uses database from Firebase.
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
