@@ -1,19 +1,33 @@
 import React, {useEffect, useState} from 'react';
 import "./TinderCards.css";
 import TinderCard from "react-tinder-card";
-import axios from "./axios";
+import database from "./firebase";
+//import axios from "./axios";
 
 const TinderCards = () => {
     const [people, setPeople] = useState([]);
 
     useEffect(() => {
-        async function fetchData() {
+/*        async function fetchData() {
             const req = await axios.get("/tinder/cards");
 
             setPeople(req.data);
         }
 
         fetchData();
+*/
+        //s here with firebase
+        const unsubscribe = database
+            .collection('people')
+            .onSnapshot(snapshot => {
+                setPeople(snapshot.docs.map(doc => doc.data()))
+            })
+
+        return () => {
+            unsubscribe();
+        }
+        // e here
+
     }, []);
 
     console.log(people);
